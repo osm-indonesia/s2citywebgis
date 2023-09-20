@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Muklis akbar">
+    <meta name="generator" content="Hugo 0.111.3">
+    <title>S2City WebGIS</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/"> 
+    <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+
+    <style>
+     
+     
+     
+     
+     
+     
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846; 
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+      .bd-mode-toggle {
+        z-index: 1500;
+      }
+
+     .side-bar-right {
+  position: absolute;
+  right: -344px;
+  top: 104px;
+  z-index: 1001;
+  background: #fff;
+  padding: 10px;
+  width: 300px;
+  min-height: 500px;
+  transition: all .5s ease;
+}
+      .side-bar-right.show {
+      right: 0px;
+     
+      }
+       .base_map {
+      margin: 0px 0px 5px 0px;
+      padding: 0px 0px 5px 0px;
+      text-align: center;
+      border-bottom: 1px solid #dc3545;
+      }
+      .base_map li {
+      display: inline-block;
+      width: 32%;
+      }
+    .side-bar-right li {
+    font-size: 13px;
+    }
+    .side-bar-right h4 {
+   font-size: 20px;
+margin-bottom: 5px;
+text-align: center;
+    }
+    
+.base_layer {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  border-bottom: 1px solid #dc3545;
+}
+.base_layer li { 
+    display: inline-block;
+    width: 100%;
+    margin: 0px 0px 5px 0px;
+    border: 1px solid #ccc;
+}
+.max-height-overflow {
+  height: 418px;
+  overflow-y: auto;
+}
+
+
+
+#HideSidebar {
+  position: absolute;
+  left: -41px;
+  border: unset;
+  top: 0;
+  background: #fff;
+  color: red;
+  padding: 5px;
+  border-radius: 6px 0px 0px 6px;
+}
+#map
+{
+  overflow: hidden;
+}
+.sub-layer {
+  padding: 0px 0px 0px 0px;
+  margin: 0;
+  width: 100%;
+}
+.sub-layer li {
+  display: inline-flex;
+width: 50%;
+padding: 5px 0px 5px 25px;
+margin-bottom: 0;
+  position: relative;
+  font-size: 11px;
+  height: 40px;
+}
+.leaflet-top {
+  top: unset;
+  bottom: 25px;
+}
+.leaflet-popup-content {
+  max-height: 200px;
+  overflow-y: auto;
+}
+    
+.sub-layer td {
+  border: 1px solid #ca1b1b;
+  padding: 2px 5px 0px 20px;
+  position: relative;
+  width: 50%;
+}
+.sub-layer input {
+  position: absolute;
+  left: 2px;
+  top: 3px;
+}
+.sub-layer h4 {
+  font-size: 15px;
+  font-weight: bold;
+  color: #e37a7a;
+}
+.btn-menu a {
+  color: #000;
+  text-decoration: unset;
+}
+.leaflet-popup-content {
+  min-width: 299px;
+  min-height: 200px;
+}
+.el-legenda {
+  position: absolute;
+  z-index: 1000;
+  bottom: 70px;
+  left: 5px;
+  background: rgb(247, 247, 247);
+  padding: 5px;
+}
+#legenda {
+  padding: 0;
+  margin: 0;
+}
+#legenda li {
+  min-width: 60px;
+  display: block;
+}
+.el-legenda h4 {
+  font-size: 15px;
+  text-align: center;
+}
+    </style>
+ <link rel="stylesheet" href="map.css"/>
+
+    
+  </head>
+  <body>   
+    <div id="map">
+      <!-- Logo -->
+      <div class="content-logo">
+          <img src="assets/logo.png"> 
+          <div class="title-corp"><h5>Portal Data Terkait Isu Keamanan & Kenyamanan Publik Kota Bandung</h5></div>
+      </div>
+  
+      <!-- Logo -->
+        <!-- Menu -->
+      <div class="btn-menu">
+        <button id="Menu" class="btn btn-danger btn-sm" >Menu</button>
+        <ul>
+          <li><a href="s2cities.org">Home</a></li>
+          <li id="Tentang">About Project</li> 
+          <li id="Download">Download Module</li> 
+        </ul>
+      </div>
+        <!-- Menu -->
+      <!-- Menu right-->
+      <div class="content-menu-right show">
+     <button class="btn-menu-right" id="ShowSidebar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        
+      </div>
+      <div class="side-bar-right">
+        <button id="HideSidebar">Hide</button>
+        <h4>Layer Service</h4>
+        <ul class="base_map">
+          <li><input name="satelite" type="radio" value="Satellite" > Satellite</li>
+          <li><input name="satelite" type="radio" value="Terrain" checked="checked">  OSM</li>
+          <li><input name="satelite" type="radio" value="Road">  Terrain</li>  
+        </ul>
+        <div class="max-height-overflow"> 
+          <ul class="base_layer"> 
+          </ul>
+        </div>
+      </div>
+      <!-- Menu right-->
+      <div class="el-legenda">
+        <h4>Legend</h4>
+        <ul  id="legenda"></ul>
+      </div>
+
+      <!-- footer -->
+      <div class="logo-footer">
+      <img src="assets/logo_InaRISK_ina_map.png">
+      </div>
+      <!-- footer -->
+
+
+  </div>
+
+     <div class="modal fade" id="ModalTentang" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+      <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Tentang S2cities</h5> 
+      </div>
+      <div class="modal-body"><h3 class="title">Tentang S2cities</h3><p><strong>S2cities</strong> Bandung merupakan kota dengan tingkat pertumbuhan penduduk yang tinggi, mencapai 2.503.710 pada tahun 2018 dan tingkat pertumbuhan tahunan rata-rata 1,01%. Tujuan utama dari proyek Safe and Sound (S2) City adalah untuk memperjuangkan pemuda Bandung berdaya yang secara proaktif berkontribusi pada desain pembuatan kebijakan keamanan ruang kota, membangun kembali ketahanan masyarakat pasca Covid dan berpartisipasi aktif dalam penerapan karbon rendah. mekanisme untuk mewujudkan Bandung sebagai kota yang aman, rendah emisi dan inovatif. Dalam pekaksanaan proyek ini hasil survey dan pemetaan pemuda di kota bandung kemudian, dihimpun dan divisualisasikan dalam bentuk WebGIS. WebGIS yang dikembangkan, bertujuan untuk menampilkan data-data spasial terkait keamanan dan kenyamanan kota bandung yang dapat diakses oleh publik.</p></li></ol><p></p></div> 
+      <div class="modal-footer"> 
+      <!--   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+      </div>
+      </div>
+      </div>
+      </div>
+
+    <script src="assets/dist/js/bootstrap.bundle.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+     <script src='https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js'></script>
+     <script src="L.Geoserver.js" ></script>
+     <script src="map.js" ></script>
+
+  </body>
+</html>
